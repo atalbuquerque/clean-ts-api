@@ -164,25 +164,6 @@ describe('SignUp Controller', () => {
     expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
   })
 
-  // test('Should call AddAccount with correct values', () => {
-  //   const { sut, addAccountStub } = makeSut()
-  //   const addSpy = jest.spyOn(addAccountStub, 'add')
-  //   const httpRequest = {
-  //     body: {
-  //       name: 'any_name',
-  //       mail: 'any_email@gmail.com',
-  //       password: 'any_password',
-  //       passwordConfirmation: 'any_password'
-  //     }
-  //   }
-  //   sut.handle(httpRequest)
-  //   expect(addSpy).toHaveBeenCalledWith({
-  //     email: 'any_email@gmail.com',
-  //     name: 'any_name',
-  //     password: 'any_password'
-  //   })
-  // })
-
   test('Should return 500 if AddAccount throws', () => {
     const { sut, addAccountStub } = makeSut()
     jest.spyOn(addAccountStub, 'add').mockImplementationOnce(() => {
