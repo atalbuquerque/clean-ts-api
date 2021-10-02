@@ -1,4 +1,3 @@
-import { resolve } from 'path/posix'
 import { Encrypter } from '../../protocols/encrypter'
 import { DbAddAccount } from './db-add-account'
 
