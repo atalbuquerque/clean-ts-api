@@ -3,7 +3,7 @@ import { badRequest } from '../../helpers/http-helper'
 import { MissingParamError } from '../../errors'
 
 describe('Login Controller', () => {
-  test('Should return 400 if no emailis provided', async () => {
+  test('Should return 400 if no email provided', async () => {
     const sut = new LoginController()
     const httpRequest = {
       body: {
@@ -12,5 +12,16 @@ describe('Login Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(badRequest(new MissingParamError('email')))
+  })
+
+  test('Should return 400 if no password provided', async () => {
+    const sut = new LoginController()
+    const httpRequest = {
+      body: {
+        email: 'any_email@gmail.com'
+      }
+    }
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual(badRequest(new MissingParamError('password')))
   })
 })
