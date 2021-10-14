@@ -1,4 +1,3 @@
-import { rejects } from 'assert'
 import jwt from 'jsonwebtoken'
 import { JwtAdapter } from './jwt-adapter'
 
