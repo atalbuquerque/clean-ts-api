@@ -31,6 +31,6 @@ describe('Jwt Adapter', () => {
       throw new Error()
     })
     const promise = sut.encrypt('any_id')
-    await expect(promise).rejects.toThrow
+    await expect(promise).rejects.toThrow()
   })
 })
