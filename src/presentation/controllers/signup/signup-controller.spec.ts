@@ -36,13 +36,6 @@ const makeValidation = (): Validation => {
   return new ValidationStub()
 }
 
-const makeFakeAccount = (): AccountModel => ({
-  id: 'valid_id',
-  name: 'valid_name',
-  email: 'valid_email@gmail.com',
-  password: 'valid_password'
-})
-
 const makeFakeRequest = (): HttpRequest => ({
   body: {
     name: 'any_name',
