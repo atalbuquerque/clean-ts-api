@@ -9,16 +9,32 @@ const makeFakeSurveyData = (): AddSurveyModel => ({
   }]
 })
 
+const makeAddSurveyRepository = (): AddSurveyRepository => {
+  class AddSurveyRespositoryStub implements AddSurveyRepository {
+    async add (surveyData: AddSurveyModel): Promise<void> {
+      return await new Promise(resolve => resolve())
+    }
+  }
+  return new AddSurveyRespositoryStub()
+}
+interface SutTypes {
+  sut: DbAddSurvey
+  addSurveyRepositoryStub: AddSurveyRepository
+}
+
+const makeSut = (): SutTypes => {
+  const addSurveyRepositoryStub = makeAddSurveyRepository()
+  const sut = new DbAddSurvey(addSurveyRepositoryStub)
+  return {
+    sut,
+    addSurveyRepositoryStub
+  }
+}
+
 describe('DbAddSurvey Usecase', () => {
   test('Should call AddSurveyRespository with correct values', async () => {
-    class AddSurveyRespositoryStub implements AddSurveyRepository {
-      async add (surveyData: AddSurveyModel): Promise<void> {
-        return await new Promise(resolve => resolve())
-      }
-    }
-    const addSurveyRespositoryStub = new AddSurveyRespositoryStub()
-    const addSpy = jest.spyOn(addSurveyRespositoryStub, 'add')
-    const sut = new DbAddSurvey(addSurveyRespositoryStub)
+    const { sut, addSurveyRepositoryStub } = makeSut()
+    const addSpy = jest.spyOn(addSurveyRepositoryStub, 'add')
     const surveyData = makeFakeSurveyData()
     await sut.add(surveyData)
     expect(addSpy).toHaveBeenCalledWith(surveyData)
