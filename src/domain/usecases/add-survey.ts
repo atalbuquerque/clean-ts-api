@@ -1,14 +1,10 @@
+import { SurveyAnswersModel } from '../models/survey'
+
 export interface AddSurveyModel {
   question: string
-  answers: SurveyAnswers[]
+  answers: SurveyAnswersModel[]
   date: Date
 }
-
-export interface SurveyAnswers {
-  image?: string
-  answer: string
-}
-
 export interface AddSurvey {
   add: (data: AddSurveyModel) => Promise<void>
 }
