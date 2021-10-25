@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/atalbuquerque/clean-ts-api.svg?branch=master)](https://app.travis-ci.com/atalbuquerque/clean-ts-api)
+[![Coverage Status](https://coveralls.io/repos/github/atalbuquerque/clean-ts-api/badge.svg)](https://coveralls.io/github/atalbuquerque/clean-ts-api)
 > ## APIs
 
 1. [Cadastro](./requirements/signup.md)
