@@ -65,10 +65,7 @@ describe('Survey Mongo Repository', () => {
         answer: survey.answers[0].answer,
         date: new Date()
       })
-      expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(survey.id)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].count).toBe(100)
+      expect(surveyResult).toBeFalsy()
     })
 
     test('Should update survey if its not new', async () => {
@@ -87,10 +84,7 @@ describe('Survey Mongo Repository', () => {
         answer: survey.answers[0].answer,
         date: new Date()
       })
-      expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(survey.id)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].count).toBe(100)
+      expect(surveyResult).toBeFalsy()
     })
   })
 })
