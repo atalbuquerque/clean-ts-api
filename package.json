@@ -6,7 +6,7 @@
   "author": "Alexandre T Albuquerque",
   "license": "GPL-3.0-or-later",
   "repository": "github:atalbuquerque/clean-ts-api.git",
-    "scripts": {
+  "scripts": {
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0:9222 --nolazy ./dist/main/server.js",
@@ -21,7 +21,7 @@
     "test:coveralls": "npm test -- --coverage --forceExit && coveralls < coverage/lcov.info",
     "clear": "npm test -- --clearCache"
   },
-  "keywords": [],  
+  "keywords": [],
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.1",
     "@types/bcrypt": "^5.0.0",
