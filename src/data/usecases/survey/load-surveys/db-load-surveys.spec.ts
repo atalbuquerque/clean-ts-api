@@ -3,6 +3,7 @@ import { LoadSurveyRepository } from './db-load-surveys-protocols'
 import { mockLoadSurveysRepository } from '@/data/test'
 import { throwError, mockSurveyModels } from '@/domain/test'
 import Mockdate from 'mockdate'
+import faker from 'faker'
 
 type SutTypes = {
   sut: DbLoadSurveys
@@ -30,20 +31,21 @@ describe('DbLoadSurveys', () => {
   test('Should call LoadSurveysRepository', async () => {
     const { sut, loadSurveyRepositoryStub } = makeSut()
     const loadAllSpy = jest.spyOn(loadSurveyRepositoryStub, 'loadAll')
-    await sut.load()
-    expect(loadAllSpy).toHaveBeenCalled()
+    const accountId = faker.random.uuid()
+    await sut.load(accountId)
+    expect(loadAllSpy).toHaveBeenCalledWith(accountId)
   })
 
   test('Should return a list of Surveys on success', async () => {
     const { sut } = makeSut()
-    const surveys = await sut.load()
+    const surveys = await sut.load(faker.random.uuid())
     expect(surveys).toEqual(mockSurveyModels())
   })
 
   test('Should throw if LoadSurveysRepository throws', async () => {
     const { sut, loadSurveyRepositoryStub } = makeSut()
     jest.spyOn(loadSurveyRepositoryStub, 'loadAll').mockImplementationOnce(throwError)
-    const promise = sut.load()
+    const promise = sut.load(faker.random.uuid())
     await expect(promise).rejects.toThrow()
   })
 })

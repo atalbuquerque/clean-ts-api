@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { SurveyModel } from '@/domain/models/survey'
 
-export interface LoadSurveys{
-  load: () => Promise<SurveyModel[]>
+export interface LoadSurveys {
+  load: (accountId: string) => Promise<SurveyModel[]>
 }
