@@ -14,9 +14,21 @@ export const mockSaveSurveyResult = (): SaveSurveyResult => {
 
 export const mockLoadSurveyResult = (): LoadSurveyResult => {
   class LoadSurveyResultStub implements LoadSurveyResult {
-    async load (surveyId: string): Promise<SurveyResultModel> {
+    async load (surveyId: string, accountId: string): Promise<SurveyResultModel> {
       return await Promise.resolve(mockSurveyResultModel())
     }
   }
   return new LoadSurveyResultStub()
+}
+
+export class LoadSurveyResultSpy implements LoadSurveyResult {
+  surveyResultModel = mockSurveyResultModel()
+  surveyId: string
+  accountId: string
+
+  async load (surveyId: string, accountId: string): Promise<SurveyResultModel> {
+    this.surveyId = surveyId
+    this.accountId = accountId
+    return this.surveyResultModel
+  }
 }
