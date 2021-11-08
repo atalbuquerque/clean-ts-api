@@ -13,6 +13,7 @@
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0:9222 --nolazy ./dist/main/server.js",
     "up": "npm run build && docker-compose up -d",
     "down": "docker-compose down",
+    "check": "npm-check -s -u",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --forceExit",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -62,6 +63,7 @@
     "mongo-round": "^1.0.0",
     "mongodb": "^3.7.2",
     "nodemon": "^2.0.13",
+    "npm-check": "^5.9.2",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.6.0"
   },
