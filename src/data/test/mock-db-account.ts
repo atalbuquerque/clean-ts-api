@@ -25,7 +25,7 @@ export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository
 
 export const mockLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepositoryStub {
-    async loadByToken (token: string, role?: string): Promise<AccountModel> {
+    async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepository.Result> {
       return await Promise.resolve(mockAccountModel())
     }
   }
