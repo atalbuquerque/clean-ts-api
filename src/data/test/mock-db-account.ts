@@ -2,13 +2,12 @@ import { AddAccountRepository } from '@/data/protocols/db/account/add-account-re
 import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
 import { LoadAccountByTokenRepository } from '@/data/protocols/db/account/load-account-by-token-repository'
 import { UpdateAccessTokenRepository } from '@/data/protocols/db/account/update-access-token-repository'
-import { AccountModel } from '@/domain/models/account'
 import { mockAccountModel } from '@/domain/test'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (account: AddAccountRepository.Params): Promise<AddAccountRepository.Result> {
-      return await Promise.resolve(mockAccountModel())
+      return await Promise.resolve(true)
     }
   }
   return new AddAccountRepositoryStub()
@@ -16,8 +15,12 @@ export const mockAddAccountRepository = (): AddAccountRepository => {
 
 export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<AccountModel> {
-      return await Promise.resolve(mockAccountModel())
+    async loadByEmail (email: string): Promise<LoadAccountByEmailRepository.Result> {
+      return await Promise.resolve({
+        id: 'any_id',
+        name: 'any_name',
+        password: 'any_password'
+      })
     }
   }
   return new LoadAccountByEmailRepositoryStub()

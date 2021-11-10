@@ -1,7 +1,7 @@
 import { DbAddAccount } from './db-add-account'
 import { Hasher, AddAccountRepository, LoadAccountByEmailRepository } from './db-add-account-protocols'
 import { mockHasher, mockAddAccountRepository, mockLoadAccountByEmailRepository } from '@/data/test'
-import { mockAccountModel, mockAddAccountParams, throwError } from '@/domain/test'
+import { mockAddAccountParams, throwError } from '@/domain/test'
 
 type SutTypes = {
   sut: DbAddAccount
@@ -65,7 +65,11 @@ describe('DbAddAccount Usecase', () => {
 
   test('Should return false if LoadAccountByEmailRepository not return null', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
-    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(Promise.resolve(mockAccountModel()))
+    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(Promise.resolve({
+      id: 'any_id',
+      name: 'any_name',
+      password: 'any_password'
+    }))
     const isValid = await sut.add(mockAddAccountParams())
     expect(isValid).toBe(false)
   })
