@@ -49,6 +49,21 @@ describe('Account Mongo Repository', () => {
     })
   })
 
+  describe('checkByEmail()', () => {
+    test('Should return true if email is valid', async () => {
+      const sut = makeSut()
+      await accountCollection.insertOne(mockAddAccountParams())
+      const existis = await sut.checkByEmail('any_email@gmail.com')
+      expect(existis).toBe(true)
+    })
+
+    test('Should null if loadByEmail fails', async () => {
+      const sut = makeSut()
+      const account = await sut.loadByEmail('any_email@gmail.com')
+      expect(account).toBeFalsy()
+    })
+  })
+
   describe('updateAccessToken()', () => {
     test('Should the account accessToken on updateAccessToken success', async () => {
       const sut = makeSut()
