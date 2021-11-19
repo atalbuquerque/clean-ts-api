@@ -1,9 +1,11 @@
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
 import { LoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository'
 import { LoadSurveyRepository } from '@/data/protocols/db/survey/load-survey-repository'
+import { CheckSurveyByIdRepository } from '../protocols/db/survey/check-survey-by-id-repository'
+import { LoadAnswersBySurveyRepository } from '../protocols/db/survey/load-answers-by-survey-repository'
 import { SurveyModel } from '@/domain/models/survey'
 import { mockSurveyModel, mockSurveyModels } from '@/domain/test'
-import { CheckSurveyByIdRepository } from '../protocols/db/survey/check-survey-by-id-repository'
+import Faker from 'faker'
 
 export const mockAddSurveyRepository = (): AddSurveyRepository => {
   class AddSurveyRespositoryStub implements AddSurveyRepository {
@@ -37,6 +39,16 @@ export class CheckSurveyByIdRepositorySpy implements CheckSurveyByIdRepository {
   id: string
 
   async checkById (id: string): Promise<CheckSurveyByIdRepository.Result> {
+    this.id = id
+    return this.result
+  }
+}
+
+export class LoadAnswersBySurveyRepositorySpy implements LoadAnswersBySurveyRepository {
+  result = [Faker.random.word(), Faker.random.word()]
+  id: string
+
+  async loadAnswers (id: string): Promise<LoadAnswersBySurveyRepository.Result> {
     this.id = id
     return this.result
   }

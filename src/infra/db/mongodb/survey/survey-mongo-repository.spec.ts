@@ -138,4 +138,26 @@ describe('Survey Mongo Repository', () => {
       expect(exists).toBe(false)
     })
   })
+
+  describe('loadAwswers()', () => {
+    test('Should load answers on success', async () => {
+      const res = await surveyCollection.insertOne({
+        question: 'any_question',
+        answers: [{
+          image: 'any_image',
+          answer: 'any_answer'
+        }],
+        date: new Date()
+      })
+      const sut = makeSut()
+      const answers = await sut.loadAnswers(res.ops[0]._id)
+      expect(answers).toBeTruthy()
+    })
+
+    test('Should empty array if survey does not exists', async () => {
+      const sut = makeSut()
+      const answers = await sut.loadAnswers(new FakeObjectId().toHexString())
+      expect(answers).toStrictEqual([])
+    })
+  })
 })

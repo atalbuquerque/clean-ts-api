@@ -1,4 +1,5 @@
 export * from '@/data/protocols/db/survey/load-survey-by-id-repository'
+export * from '@/data/protocols/db/survey/load-answers-by-survey-repository'
 export * from '@/data/protocols/db/survey/check-survey-by-id-repository'
 export * from '@/domain/models/survey'
 export * from '@/domain/usecases/survey/load-answers-by-survey'
