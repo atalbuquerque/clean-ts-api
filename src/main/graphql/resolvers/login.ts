@@ -5,7 +5,7 @@ export default {
     async login (parent: any, args: any) {
       const loginController = makeLoginController()
       const httpResponse = await loginController.handle(args)
-      return httpResponse.body
+      return httpResponse.body.authenticationModel
     }
   }
 }
